@@ -56,3 +56,32 @@ def setup_database():
     except Exception as e:
         print(f"❌ Database setup failed: {e}")
         return False
+    
+def start_server():
+    """Start the development server"""
+    print("Starting Flask development server...")
+    
+    # Set environment variables
+    os.environ['FLASK_ENV'] = 'development'
+    os.environ['FLASK_DEBUG'] = '1'
+    
+    try:
+        from app import create_app, socketio
+        app = create_app('development')
+        
+        print("🚀 Starting server on http://localhost:5000")
+        print("📡 WebSocket support enabled")
+        print("🔄 Auto-reload enabled")
+        print("\nPress Ctrl+C to stop the server")
+        
+        # Start with SocketIO support
+        socketio.run(app, 
+                    host='0.0.0.0', 
+                    port=5000, 
+                    debug=True,
+                    use_reloader=True,
+                    allow_unsafe_werkzeug=True)
+        
+    except Exception as e:
+        print(f"❌ Failed to start server: {e}")
+        return False
