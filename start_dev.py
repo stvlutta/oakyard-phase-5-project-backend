@@ -85,3 +85,31 @@ def start_server():
     except Exception as e:
         print(f"❌ Failed to start server: {e}")
         return False
+
+def main():
+    """Main startup function"""
+    print("🏢 Oakyard Backend Development Server")
+    print("=" * 40)
+    
+    # Check if we're in the right directory
+    if not Path('requirements.txt').exists():
+        print("❌ Please run this script from the backend directory")
+        sys.exit(1)
+    
+    # Install dependencies
+    if not install_requirements():
+        sys.exit(1)
+    
+    # Setup database
+    if not setup_database():
+        sys.exit(1)
+    
+    # Check Redis (optional)
+    if not check_redis():
+        print("⚠️  Redis not running - some features may not work")
+        print("   You can start Redis with: redis-server")
+    else:
+        print("✅ Redis is running")
+    
+    # Start server
+    start_server()
