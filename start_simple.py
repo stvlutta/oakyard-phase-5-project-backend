@@ -18,3 +18,13 @@ def main():
         from app import create_app, socketio
         
         app = create_app('development')
+
+        # Create uploads directory
+        os.makedirs('uploads', exist_ok=True)
+        
+        print("🏢 Oakyard Backend Server")
+        print("========================")
+        print("🚀 Starting server on http://localhost:5001")
+        print("📡 WebSocket support enabled")
+        print("🔄 Auto-reload enabled")
+        print("\nPress Ctrl+C to stop the server\n")
