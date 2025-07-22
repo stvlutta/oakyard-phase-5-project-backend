@@ -28,3 +28,19 @@ def main():
         print("📡 WebSocket support enabled")
         print("🔄 Auto-reload enabled")
         print("\nPress Ctrl+C to stop the server\n")
+
+                # Start server
+        socketio.run(app, 
+                    host='0.0.0.0', 
+                    port=5001, 
+                    debug=True,
+                    use_reloader=False,  # Disable reloader to avoid issues
+                    allow_unsafe_werkzeug=True)
+        
+    except ImportError as e:
+        print(f"❌ Import error: {e}")
+        print("Please install requirements: pip install -r requirements.txt")
+        sys.exit(1)
+    except Exception as e:
+        print(f"❌ Failed to start server: {e}")
+        sys.exit(1)
