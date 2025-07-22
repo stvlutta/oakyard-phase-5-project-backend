@@ -11,3 +11,10 @@ sys.path.insert(0, str(Path(__file__).parent))
 # Set environment variables
 os.environ['FLASK_ENV'] = 'development'
 os.environ['FLASK_DEBUG'] = '1'
+
+def main():
+    try:
+        # Try to import and run the app
+        from app import create_app, socketio
+        
+        app = create_app('development')
