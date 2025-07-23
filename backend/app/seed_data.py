@@ -134,6 +134,17 @@ def create_sample_spaces(users):
             'amenities': ['wifi', 'coffee', 'kitchen', 'phone_booth', 'parking'],
             'latitude': 40.7614,
             'longitude': -73.9776
+        },
+        {
+            'title': 'Training Room',
+            'description': 'Professional training room with modern equipment and comfortable seating.',
+            'category': 'training_room',
+            'hourly_rate': 60.00,
+            'capacity': 25,
+            'address': '987 Education Center, Learning District, City 12350',
+            'amenities': ['wifi', 'projector', 'whiteboard', 'flipchart', 'coffee', 'parking'],
+            'latitude': 40.7349,
+            'longitude': -74.0721
         }
     ]
     
