@@ -205,8 +205,13 @@ def create_sample_bookings(users, spaces):
                 start_time=start_time,
                 end_time=end_time,
                 total_amount=total_amount,
-                status='confirmed',
-                payment_status='paid'
+                status=random.choice(['confirmed', 'pending', 'completed']),
+                payment_status=random.choice(['paid', 'pending']),
+                special_requests=random.choice([
+                    '', 'Please prepare coffee for the meeting',
+                    'Need extra chairs for 2 people',
+                    'Vegetarian catering preferred'
+                ])
             )
             bookings.append(booking)
     
