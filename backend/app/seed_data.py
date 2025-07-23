@@ -69,3 +69,27 @@ def create_sample_users():
         users.append(owner)
     
     return users
+
+def create_sample_spaces(users):
+    """Create sample spaces"""
+    spaces = []
+    
+    # Get owners
+    owners = [user for user in users if user.role == 'owner']
+    
+    space_data = [
+        {
+            'title': 'Downtown Meeting Room',
+            'description': 'Modern meeting room in the heart of downtown with all amenities including projector, whiteboard, and high-speed internet.',
+            'category': 'meeting_room',
+            'hourly_rate': 50.00,
+            'capacity': 8,
+            'address': '123 Business District, Downtown, City 12345',
+            'amenities': ['wifi', 'projector', 'whiteboard', 'coffee', 'parking'],
+            'latitude': 40.7128,
+            'longitude': -74.0060,
+            'is_featured': True
+        }
+    ]
+    
+    return spaces
