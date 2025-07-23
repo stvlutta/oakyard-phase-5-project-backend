@@ -46,7 +46,7 @@ class Config:
     RATELIMIT_STORAGE_URL = config('RATELIMIT_STORAGE_URL', default='redis://localhost:6379/1')
     
     # CORS
-    CORS_ORIGINS = ["http://localhost:8080"]
+    CORS_ORIGINS = ["http://localhost:8080", "http://localhost:3000", "http://localhost:5173"]
     
     # Socket.IO
     SOCKETIO_CORS_ALLOWED_ORIGINS = config('SOCKETIO_CORS_ALLOWED_ORIGINS', default='http://localhost:5173,http://localhost:3000').split(',')
