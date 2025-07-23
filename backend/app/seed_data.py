@@ -225,7 +225,7 @@ def create_sample_reviews(users, spaces, bookings):
     completed_bookings = [b for b in bookings if b.status == 'completed']
     
     # Create reviews for random completed bookings
-    for booking in completed_bookings[:5]:
+    for booking in completed_bookings[:10]:
         review = Review(
             user_id=booking.user_id,
             space_id=booking.space_id,
