@@ -178,3 +178,63 @@ def create_sample_bookings(users, spaces):
             bookings.append(booking)
     
     return bookings
+
+def create_sample_reviews(users, spaces, bookings):
+    """Create sample reviews"""
+    reviews = []
+    
+    # Get completed bookings
+    completed_bookings = [b for b in bookings if b.status == 'completed']
+    
+    # Create reviews for random completed bookings
+    for booking in completed_bookings[:5]:
+        review = Review(
+            user_id=booking.user_id,
+            space_id=booking.space_id,
+            booking_id=booking.id,
+            rating=random.randint(3, 5),
+            comment=random.choice([
+                'Great space with excellent amenities!',
+                'Perfect for our team meeting. Clean and well-equipped.',
+                'Love the location and the professional atmosphere.',
+                'Good value for money. Would book again.',
+                'Excellent service and beautiful space.'
+            ])
+        )
+        reviews.append(review)
+    
+    return reviews
+
+def seed_database():
+    """Seed the database with sample data"""
+    print("Creating sample data...")
+    
+    # Create users
+    users = create_sample_users()
+    for user in users:
+        db.session.add(user)
+    db.session.commit()
+    print(f"Created {len(users)} users")
+    
+    # Create spaces
+    spaces = create_sample_spaces(users)
+    for space in spaces:
+        db.session.add(space)
+    db.session.commit()
+    print(f"Created {len(spaces)} spaces")
+    
+    # Create bookings
+    bookings = create_sample_bookings(users, spaces)
+    for booking in bookings:
+        db.session.add(booking)
+    db.session.commit()
+    print(f"Created {len(bookings)} bookings")
+    
+    # Create reviews
+    reviews = create_sample_reviews(users, spaces, bookings)
+    for review in reviews:
+        db.session.add(review)
+    db.session.commit()
+    print(f"Created {len(reviews)} reviews")
+    
+    print("Sample data created successfully!")
