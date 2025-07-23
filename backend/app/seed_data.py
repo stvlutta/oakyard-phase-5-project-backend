@@ -137,3 +137,44 @@ def create_sample_spaces(users):
         spaces.append(space)
     
     return spaces
+
+def create_sample_bookings(users, spaces):
+    """Create sample bookings"""
+    bookings = []
+    
+    # Get regular users
+    regular_users = [user for user in users if user.role == 'user']
+    
+    # Create bookings for the past, present, and future
+    for _ in range(10):
+        user = random.choice(regular_users)
+        space = random.choice(spaces)
+        
+        # Random date within last 30 days or next 30 days
+        days_offset = random.randint(-30, 30)
+        base_date = datetime.utcnow() + timedelta(days=days_offset)
+        
+        # Random start time (9 AM to 6 PM)
+        start_hour = random.randint(9, 18)
+        start_time = base_date.replace(hour=start_hour, minute=0, second=0, microsecond=0)
+        
+        # Random duration (1-8 hours)
+        duration = random.randint(1, 8)
+        end_time = start_time + timedelta(hours=duration)
+        
+        # Check if space is available
+        if space.is_available(start_time, end_time):
+            total_amount = space.hourly_rate * duration
+            
+            booking = Booking(
+                user_id=user.id,
+                space_id=space.id,
+                start_time=start_time,
+                end_time=end_time,
+                total_amount=total_amount,
+                status='confirmed',
+                payment_status='paid'
+            )
+            bookings.append(booking)
+    
+    return bookings
