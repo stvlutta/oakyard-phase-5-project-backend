@@ -179,7 +179,7 @@ def create_sample_bookings(users, spaces):
     regular_users = [user for user in users if user.role == 'user']
     
     # Create bookings for the past, present, and future
-    for _ in range(10):
+    for _ in range(30):
         user = random.choice(regular_users)
         space = random.choice(spaces)
         
