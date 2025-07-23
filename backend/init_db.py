@@ -7,7 +7,8 @@ import os
 
 def init_database():
     """Initialize database with tables and sample data"""
-    app = create_app('development')
+    env = os.getenv('FLASK_ENV', 'development')
+    app = create_app(env)
     
     with app.app_context():
         # Create all tables
