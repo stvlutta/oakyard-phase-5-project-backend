@@ -46,4 +46,26 @@ def create_sample_users():
         user.set_password('password123')
         users.append(user)
     
+    # Space owners
+    owner_data = [
+        {'email': 'alice.owner@example.com', 'name': 'Alice Owner', 'role': 'owner'},
+        {'email': 'bob.owner@example.com', 'name': 'Bob Owner', 'role': 'owner'},
+        {'email': 'carol.owner@example.com', 'name': 'Carol Owner', 'role': 'owner'},
+        {'email': 'daniel.owner@example.com', 'name': 'Daniel Owner', 'role': 'owner'},
+    ]
+    
+    for owner_info in owner_data:
+        owner = User(
+            email=owner_info['email'],
+            name=owner_info['name'],
+            role=owner_info['role'],
+            email_verified=True,
+            is_active=True,
+            phone=f'+1-555-{random.randint(100, 999)}-{random.randint(1000, 9999)}',
+            address=f'{random.randint(100, 999)} Business Ave, City, State {random.randint(10000, 99999)}',
+            bio=f'I am {owner_info["name"]} and I provide amazing spaces for rent.'
+        )
+        owner.set_password('password123')
+        users.append(owner)
+    
     return users
