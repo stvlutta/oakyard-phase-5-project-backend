@@ -89,7 +89,51 @@ def create_sample_spaces(users):
             'latitude': 40.7128,
             'longitude': -74.0060,
             'is_featured': True
+        },
+        {
+            'title': 'Creative Studio Space',
+            'description': 'Bright and spacious creative studio perfect for workshops, photo shoots, and creative sessions.',
+            'category': 'creative_studio',
+            'hourly_rate': 75.00,
+            'capacity': 12,
+            'address': '456 Art District, Creative Quarter, City 12346',
+            'amenities': ['wifi', 'natural_light', 'sound_system', 'kitchen', 'parking'],
+            'latitude': 40.7589,
+            'longitude': -73.9851,
+            'is_featured': True
+        },
+        {
+            'title': 'Executive Conference Room',
+            'description': 'Premium conference room with video conferencing capabilities and executive amenities.',
+            'category': 'conference_room',
+            'hourly_rate': 100.00,
+            'capacity': 15,
+            'address': '789 Corporate Center, Business District, City 12347',
+            'amenities': ['wifi', 'video_conferencing', 'projector', 'whiteboard', 'catering', 'parking'],
+            'latitude': 40.7505,
+            'longitude': -73.9934
         }
     ]
+    
+    for i, space_info in enumerate(space_data):
+        owner = owners[i % len(owners)]
+        space = Space(
+            owner_id=owner.id,
+            title=space_info['title'],
+            description=space_info['description'],
+            category=space_info['category'],
+            hourly_rate=space_info['hourly_rate'],
+            capacity=space_info['capacity'],
+            address=space_info['address'],
+            amenities=space_info['amenities'],
+            latitude=space_info['latitude'],
+            longitude=space_info['longitude'],
+            is_approved=True,
+            is_active=True,
+            is_featured=space_info.get('is_featured', False),
+            rating_avg=round(random.uniform(4.0, 5.0), 1),
+            rating_count=random.randint(5, 50)
+        )
+        spaces.append(space)
     
     return spaces
