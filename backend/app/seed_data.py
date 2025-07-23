@@ -112,6 +112,28 @@ def create_sample_spaces(users):
             'amenities': ['wifi', 'video_conferencing', 'projector', 'whiteboard', 'catering', 'parking'],
             'latitude': 40.7505,
             'longitude': -73.9934
+        },
+        {
+            'title': 'Event Hall',
+            'description': 'Large event hall suitable for conferences, workshops, and corporate events.',
+            'category': 'event_hall',
+            'hourly_rate': 200.00,
+            'capacity': 100,
+            'address': '321 Event Plaza, Convention Center, City 12348',
+            'amenities': ['wifi', 'sound_system', 'projector', 'stage', 'catering', 'parking'],
+            'latitude': 40.7282,
+            'longitude': -74.0776
+        },
+        {
+            'title': 'Coworking Space',
+            'description': 'Open coworking space with flexible seating and collaborative environment.',
+            'category': 'coworking_space',
+            'hourly_rate': 25.00,
+            'capacity': 20,
+            'address': '654 Startup Hub, Tech District, City 12349',
+            'amenities': ['wifi', 'coffee', 'kitchen', 'phone_booth', 'parking'],
+            'latitude': 40.7614,
+            'longitude': -73.9776
         }
     ]
     
