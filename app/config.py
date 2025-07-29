@@ -9,7 +9,11 @@ class Config:
     JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=30)
     
     # Database
-    SQLALCHEMY_DATABASE_URI = config('DATABASE_URL', default='sqlite:///oakyard.db')
+    database_url = config('DATABASE_URL', default='sqlite:///oakyard.db')
+    # Handle postgres:// to postgresql:// conversion for SQLAlchemy 1.4+
+    if database_url.startswith('postgres://'):
+        database_url = database_url.replace('postgres://', 'postgresql://', 1)
+    SQLALCHEMY_DATABASE_URI = database_url
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
     # Email configuration
@@ -46,7 +50,8 @@ class Config:
     RATELIMIT_STORAGE_URL = config('RATELIMIT_STORAGE_URL', default='redis://localhost:6379/1')
     
     # CORS
-    CORS_ORIGINS = ["http://localhost:8080", "http://localhost:3000", "http://localhost:5173"]
+    cors_origins = config('CORS_ORIGINS', default='http://localhost:8080,http://localhost:3000,http://localhost:5173').split(',')
+    CORS_ORIGINS = cors_origins
     
     # Socket.IO
     SOCKETIO_CORS_ALLOWED_ORIGINS = config('SOCKETIO_CORS_ALLOWED_ORIGINS', default='http://localhost:5173,http://localhost:3000').split(',')
